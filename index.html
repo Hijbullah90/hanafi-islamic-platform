@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087b52">
+<title>HANAFI - Islamic Lifestyle</title>
+
+<style>
+:root {
+  --bg:#f4faf6;
+  --card:#ffffff;
+  --text:#183d2e;
+  --primary:#087b52;
+  --secondary:#d5eee1;
+  --border:#e0eee5;
+  --gold:#c69b43;
+}
+
+[data-theme="dark"] {
+  --bg:#101c18;
+  --card:#1c2c25;
+  --text:#f1f7f2;
+  --primary:#36b982;
+  --secondary:#294638;
+  --border:#344b3e;
+  --gold:#e3bd64;
+}
+
+[data-theme="royal"] {
+  --bg:#102d22;
+  --card:#194333;
+  --text:#fff8e7;
+  --primary:#d6ad55;
+  --secondary:#285440;
+  --border:#496b53;
+  --gold:#e6c477;
+}
+
+[data-theme="blue"] {
+  --bg:#eff6ff;
+  --card:#ffffff;
+  --text:#173451;
+  --primary:#2878ba;
+  --secondary:#dcecff;
+  --border:#d8e6f4;
+  --gold:#c69b43;
+}
+
+[data-theme="cream"] {
+  --bg:#faf6ed;
+  --card:#fffdf7;
+  --text:#51412e;
+  --primary:#987443;
+  --secondary:#eee3d1;
+  --border:#e8ddcb;
+  --gold:#b68c46;
+}
+
+[data-theme="simple"] {
+  --bg:#ffffff;
+  --card:#ffffff;
+  --text:#171717;
+  --primary:#087b52;
+  --secondary:#eeeeee;
+  --border:#dddddd;
+  --gold:#a77d25;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  transition:.25s;
+}
+
+header {
+  background:var(--card);
+  padding:15px 5%;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo {
+  font-size:27px;
+  font-weight:bold;
+  color:var(--primary);
+  letter-spacing:2px;
+}
+
+.controls {
+  display:flex;
+  gap:8px;
+}
+
+select,button {
+  padding:10px 13px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer;
+}
+
+.hero {
+  text-align:center;
+  padding:38px 15px;
+  background:var(--secondary);
+}
+
+.hero h1 {
+  font-size:32px;
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+.hero p {
+  line-height:1.8;
+}
+
+.clock {
+  font-size:35px;
+  font-weight:bold;
+  margin:18px 0 5px;
+  color:var(--primary);
+}
+
+.date {
+  font-size:14px;
+}
+
+.container {
+  max-width:1100px;
+  margin:auto;
+  padding:22px 15px;
+}
+
+.section-title {
+  font-size:21px;
+  margin:25px 0 14px;
+  border-inline-start:4px solid var(--primary);
+  padding-inline-start:10px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:13px;
+}
+
+.card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:20px 12px;
+  text-align:center;
+  transition:.2s;
+}
+
+.card:hover {
+  transform:translateY(-3px);
+  border-color:var(--primary);
+}
+
+.card .emoji {
+  font-size:29px;
+  margin-bottom:10px;
+}
+
+.card h3 {
+  font-size:16px;
+  margin-bottom:7px;
+}
+
+.card p {
+  font-size:12px;
+  line-height:1.7;
+  opacity:.8;
+}
+
+.panel {
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:13px;
+  margin-top:15px;
+}
+
+.prayer-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+  gap:10px;
+}
+
+.prayer {
+  background:var(--secondary);
+  padding:15px 5px;
+  text-align:center;
+  border-radius:10px;
+}
+
+.prayer strong {
+  display:block;
+  margin-bottom:7px;
+}
+
+.tasbih-count {
+  font-size:48px;
+  color:var(--primary);
+  font-weight:bold;
+  text-align:center;
+  margin:15px;
+}
+
+.tasbih-actions {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.primary-btn {
+  background:var(--primary);
+  color:white;
+  border:0;
+  min-width:110px;
+}
+
+.compass {
+  font-size:90px;
+  text-align:center;
+  margin:15px;
+  color:var(--primary);
+}
+
+footer {
+  background:var(--card);
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:25px 10px;
+  margin-top:30px;
+  line-height:2;
+  font-size:13px;
+}
+
+button:focus-visible,select:focus-visible {
+  outline:3px solid var(--gold);
+  outline-offset:3px;
+}
+
+@media(max-width:500px) {
+  header {justify-content:center;}
+  .hero h1 {font-size:26px;}
+  .clock {font-size:29px;}
+}
+</style>
+</head>
+
+<body data-theme="light">
+
+<header>
+  <div class="logo">☪ HANAFI</div>
+
+  <div class="controls">
+    <select id="language" aria-label="Language">
+      <option value="bn">বাংলা</option>
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+    </select>
+
+    <select id="theme" aria-label="Theme">
+      <option value="light">Classic Light</option>
+      <option value="dark">Dark Mode</option>
+      <option value="royal">Royal Gold</option>
+      <option value="blue">Ocean Blue</option>
+      <option value="cream">Soft Cream</option>
+      <option value="simple">Simple</option>
+    </select>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i="welcome">আসসালামু আলাইকুম</h1>
+  <p data-i="subtitle">আপনার প্রতিদিনের ইসলামিক সঙ্গী</p>
+
+  <div class="clock" id="clock">০০:০০:০০</div>
+  <div class="date" id="date"></div>
+</section>
+
+<main class="container">
+
+  <h2 class="section-title" data-i="prayerTitle">নামাজের সময়সূচি</h2>
+
+  <div class="panel">
+    <div class="prayer-grid">
+      <div class="prayer"><strong data-i="fajr">ফজর</strong><span>--:--</span></div>
+      <div class="prayer"><strong data-i="dhuhr">যোহর</strong><span>--:--</span></div>
+      <div class="prayer"><strong data-i="asr">আসর</strong><span>--:--</span></div>
+      <div class="prayer"><strong data-i="maghrib">মাগরিব</strong><span>--:--</span></div>
+      <div class="prayer"><strong data-i="isha">এশা</strong><span>--:--</span></div>
+    </div>
+
+    <p style="text-align:center;margin-top:18px"
+       data-i="nextPrayer">
+      নামাজের সময়সূচি যুক্ত হলে পরবর্তী ওয়াক্তের কাউন্টডাউন দেখা যাবে।
+    </p>
+  </div>
+
+  <h2 class="section-title" data-i="mainServices">প্রধান ইসলামিক সেবাসমূহ</h2>
+
+  <div class="grid">
+    <div class="card">
+      <div class="emoji">📖</div>
+      <h3 data-i="quran">পবিত্র কুরআন</h3>
+      <p data-i="quranDesc">১১৪টি সূরা ও বাংলা অনুবাদ</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🧭</div>
+      <h3 data-i="qibla">কিবলা কম্পাস</h3>
+      <p data-i="qiblaDesc">কাবা শরিফের দিকনির্দেশনা</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">📿</div>
+      <h3 data-i="tasbih">ডিজিটাল তাসবিহ</h3>
+      <p data-i="tasbihDesc">জিকির গণনা করুন</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🤲</div>
+      <h3 data-i="dua">দোয়া ও আমল</h3>
+      <p data-i="duaDesc">দৈনন্দিন মাসনুন দোয়া</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">📚</div>
+      <h3 data-i="hadith">হাদিস</h3>
+      <p data-i="hadithDesc">নির্ভরযোগ্য হাদিস সংগ্রহ</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🕌</div>
+      <h3 data-i="islamic">ইসলামিক শিক্ষা</h3>
+      <p data-i="islamicDesc">মাসআলা ও মাসায়েল</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🌙</div>
+      <h3 data-i="calendar">ইসলামিক ক্যালেন্ডার</h3>
+      <p data-i="calendarDesc">হিজরি তারিখ ও বিশেষ দিন</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🔊</div>
+      <h3 data-i="audio">অডিও শিক্ষা</h3>
+      <p data-i="audioDesc">শুনে শুনে শিখুন</p>
+    </div>
+  </div>
+
+  <h2 class="section-title" data-i="tasbihTitle">ডিজিটাল তাসবিহ কাউন্টার</h2>
+
+  <div class="panel">
+    <p style="text-align:center" id="zikr">سُبْحَانَ اللَّهِ</p>
+
+    <div class="tasbih-count" id="count">০</div>
+
+    <div class="tasbih-actions">
+      <button class="primary-btn" id="add" data-i="countBtn">গণনা করুন</button>
+      <button id="reset" data-i="resetBtn">রিসেট</button>
+    </div>
+  </div>
+
+  <h2 class="section-title" data-i="qiblaTitle">কিবলা কম্পাস</h2>
+
+  <div class="panel">
+    <div class="compass">🧭</div>
+    <p style="text-align:center" data-i="qiblaInfo">
+      কিবলার সঠিক দিক দেখাতে অবস্থান ও কম্পাস সেন্সর সংযুক্ত করা হবে।
+    </p>
+  </div>
+
+  <h2 class="section-title" data-i="duaTitle">দৈনন্দিন দোয়া</h2>
+
+  <div class="grid">
+    <div class="card"><div class="emoji">🌅</div><h3 data-i="morning">সকালের দোয়া</h3></div>
+    <div class="card"><div class="emoji">🌇</div><h3 data-i="evening">সন্ধ্যার দোয়া</h3></div>
+    <div class="card"><div class="emoji">🌙</div><h3 data-i="sleep">ঘুমানোর দোয়া</h3></div>
+    <div class="card"><div class="emoji">☀️</div><h3 data-i="wake">ঘুম থেকে ওঠার দোয়া</h3></div>
+    <div class="card"><div class="emoji">📿</div><h3 data-i="ayat">আয়াতুল কুরসি</h3></div>
+    <div class="card"><div class="emoji">🤲</div><h3 data-i="salawat">দরুদ শরিফ</h3></div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="logo">☪ HANAFI</div>
+  <p data-i="footer">ইবাদত, শিক্ষা ও সুন্দর জীবনের প্রতিদিনের সঙ্গী</p>
+  <p>© 2026 HANAFI. All Rights Reserved.</p>
+</footer>
+
+<script>
+const translations = {
+bn: {
+welcome:"আসসালামু আলাইকুম",
+subtitle:"আপনার প্রতিদিনের ইসলামিক সঙ্গী",
+prayerTitle:"নামাজের সময়সূচি",
+fajr:"ফজর",dhuhr:"যোহর",asr:"আসর",
+maghrib:"মাগরিব",isha:"এশা",
+nextPrayer:"নামাজের সময়সূচি যুক্ত হলে পরবর্তী ওয়াক্তের কাউন্টডাউন দেখা যাবে।",
+mainServices:"প্রধান ইসলামিক সেবাসমূহ",
+quran:"পবিত্র কুরআন",quranDesc:"১১৪টি সূরা ও বাংলা অনুবাদ",
+qibla:"কিবলা কম্পাস",qiblaDesc:"কাবা শরিফের দিকনির্দেশনা",
+tasbih:"ডিজিটাল তাসবিহ",tasbihDesc:"জিকির গণনা করুন",
+dua:"দোয়া ও আমল",duaDesc:"দৈনন্দিন মাসনুন দোয়া",
+hadith:"হাদিস",hadithDesc:"নির্ভরযোগ্য হাদিস সংগ্রহ",
+islamic:"ইসলামিক শিক্ষা",islamicDesc:"মাসআলা ও মাসায়েল",
+calendar:"ইসলামিক ক্যালেন্ডার",calendarDesc:"হিজরি তারিখ ও বিশেষ দিন",
+audio:"অডিও শিক্ষা",audioDesc:"শুনে শুনে শিখুন",
+tasbihTitle:"ডিজিটাল তাসবিহ কাউন্টার",
+countBtn:"গণনা করুন",resetBtn:"রিসেট",
+qiblaTitle:"কিবলা কম্পাস",
+qiblaInfo:"কিবলার সঠিক দিক দেখাতে অবস্থান ও কম্পাস সেন্সর সংযুক্ত করা হবে।",
+duaTitle:"দৈনন্দিন দোয়া",
+morning:"সকালের দোয়া",evening:"সন্ধ্যার দোয়া",
+sleep:"ঘুমানোর দোয়া",wake:"ঘুম থেকে ওঠার দোয়া",
+ayat:"আয়াতুল কুরসি",salawat:"দরুদ শরিফ",
+footer:"ইবাদত, শিক্ষা ও সুন্দর জীবনের প্রতিদিনের সঙ্গী"
+},
+
+en: {
+welcome:"Assalamu Alaikum",
+subtitle:"Your Daily Islamic Companion",
+prayerTitle:"Prayer Times",
+fajr:"Fajr",dhuhr:"Dhuhr",asr:"Asr",
+maghrib:"Maghrib",isha:"Isha",
+nextPrayer:"Prayer countdown will appear after prayer times are connected.",
+mainServices:"Main Islamic Services",
+quran:"Holy Quran",quranDesc:"114 Surahs and Translation",
+qibla:"Qibla Compass",qiblaDesc:"Direction of the Kaaba",
+tasbih:"Digital Tasbih",tasbihDesc:"Count your Zikr",
+dua:"Dua & Deeds",duaDesc:"Daily Supplications",
+hadith:"Hadith",hadithDesc:"Authentic Hadith Collection",
+islamic:"Islamic Learning",islamicDesc:"Islamic Guidance",
+calendar:"Islamic Calendar",calendarDesc:"Hijri Dates and Events",
+audio:"Audio Learning",audioDesc:"Learn by Listening",
+tasbihTitle:"Digital Tasbih Counter",
+countBtn:"Count",resetBtn:"Reset",
+qiblaTitle:"Qibla Compass",
+qiblaInfo:"Location and compass sensors will be connected for accurate Qibla direction.",
+duaTitle:"Daily Duas",
+morning:"Morning Duas",evening:"Evening Duas",
+sleep:"Dua Before Sleeping",wake:"Dua After Waking",
+ayat:"Ayatul Kursi",salawat:"Salawat",
+footer:"Your daily companion for worship and learning"
+},
+
+ar: {
+welcome:"السلام عليكم",
+subtitle:"رفيقك الإسلامي اليومي",
+prayerTitle:"مواقيت الصلاة",
+fajr:"الفجر",dhuhr:"الظهر",asr:"العصر",
+maghrib:"المغرب",isha:"العشاء",
+nextPrayer:"سيظهر العد التنازلي بعد إضافة مواقيت الصلاة.",
+mainServices:"الخدمات الإسلامية الرئيسية",
+quran:"القرآن الكريم",quranDesc:"١١٤ سورة وترجمة",
+qibla:"بوصلة القبلة",qiblaDesc:"اتجاه الكعبة",
+tasbih:"التسبيح الإلكتروني",tasbihDesc:"عد الأذكار",
+dua:"الأدعية والأعمال",duaDesc:"أدعية يومية",
+hadith:"الحديث",hadithDesc:"مجموعة الأحاديث الصحيحة",
+islamic:"التعليم الإسلامي",islamicDesc:"الإرشادات الإسلامية",
+calendar:"التقويم الهجري",calendarDesc:"التواريخ والمناسبات",
+audio:"التعليم الصوتي",audioDesc:"تعلم بالاستماع",
+tasbihTitle:"عداد التسبيح الإلكتروني",
+countBtn:"احسب",resetBtn:"إعادة",
+qiblaTitle:"بوصلة القبلة",
+qiblaInfo:"ستتم إضافة الموقع ومستشعر البوصلة لتحديد اتجاه القبلة.",
+duaTitle:"الأدعية اليومية",
+morning:"أذكار الصباح",evening:"أذكار المساء",
+sleep:"دعاء النوم",wake:"دعاء الاستيقاظ",
+ayat:"آية الكرسي",salawat:"الصلاة على النبي",
+footer:"رفيقك اليومي للعبادة والتعلم"
+}
+};
+
+const bnDigits = n =>
+String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+
+function applyLanguage(lang) {
+  const t = translations[lang] || translations.bn;
+
+  document.querySelectorAll("[data-i]").forEach(el=>{
+    const key=el.dataset.i;
+    if(t[key]) el.textContent=t[key];
+  });
+
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+
+  localStorage.setItem("hanafi-language",lang);
+}
+
+const langSelect=document.getElementById("language");
+const themeSelect=document.getElementById("theme");
+
+langSelect.value=localStorage.getItem("hanafi-language")||"bn";
+themeSelect.value=localStorage.getItem("hanafi-theme")||"light";
+
+applyLanguage(langSelect.value);
+document.body.dataset.theme=themeSelect.value;
+
+langSelect.addEventListener("change",e=>{
+  applyLanguage(e.target.value);
+});
+
+themeSelect.addEventListener("change",e=>{
+  document.body.dataset.theme=e.target.value;
+  localStorage.setItem("hanafi-theme",e.target.value);
+});
+
+function updateClock() {
+  const lang=langSelect.value;
+  const now=new Date();
+
+  const locale={
+    bn:"bn-BD",
+    en:"en-US",
+    ar:"ar-EG"
+  }[lang];
+
+  document.getElementById("clock").textContent=
+    new Intl.DateTimeFormat(locale,{
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit",
+      hour12:true
+    }).format(now);
+
+  document.getElementById("date").textContent=
+    new Intl.DateTimeFormat(locale,{
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    }).format(now);
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+let count=0;
+
+const countDisplay=document.getElementById("count");
+
+function updateCount(){
+  const lang=langSelect.value;
+  countDisplay.textContent=lang==="bn"
+    ?bnDigits(count)
+    :lang==="ar"
+    ?new Intl.NumberFormat("ar-EG").format(count)
+    :count;
+}
+
+document.getElementById("add").addEventListener("click",()=>{
+  count++;
+  updateCount();
+});
+
+document.getElementById("reset").addEventListener("click",()=>{
+  count=0;
+  updateCount();
+});
+
+langSelect.addEventListener("change",updateCount);
+updateCount();
+</script>
+
+</body>
+    </html>
+                                                                                   
